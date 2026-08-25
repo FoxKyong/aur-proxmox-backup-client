@@ -20,12 +20,16 @@ depends=(
 )
 makedepends=('cargo' 'clang' 'git' 'llvm' 'patchelf' 'python-docutils' 'python-sphinx')
 options=(!lto)
+# VCS prefix used for the proxmox git repos below. The default git+https
+# works everywhere; the git:// protocol (TCP 9418) is blocked on many
+# networks. Set to plain "git" to use it anyway.
+_gitproto=git+https
 source=(
-    "$pkgname-$pkgver::git://git.proxmox.com/git/proxmox-backup.git#commit=$_pbs_commit"
-    "proxmox::git://git.proxmox.com/git/proxmox.git#commit=e3e3ff11b9b92fe1ace89b84c1e15c150e2db660"
-    "proxmox-fuse::git://git.proxmox.com/git/proxmox-fuse.git"
-    "pxar::git://git.proxmox.com/git/pxar.git"
-    "pathpatterns::git://git.proxmox.com/git/pathpatterns.git"
+    "$pkgname-$pkgver::${_gitproto}://git.proxmox.com/git/proxmox-backup.git#commit=$_pbs_commit"
+    "proxmox::${_gitproto}://git.proxmox.com/git/proxmox.git#commit=e3e3ff11b9b92fe1ace89b84c1e15c150e2db660"
+    "proxmox-fuse::${_gitproto}://git.proxmox.com/git/proxmox-fuse.git"
+    "pxar::${_gitproto}://git.proxmox.com/git/pxar.git"
+    "pathpatterns::${_gitproto}://git.proxmox.com/git/pathpatterns.git"
     "0001-re-route-dependencies-not-available-on-crates.io-to-.patch"
     "0002-docs-drop-all-but-client-man-pages.patch"
     "elf-strip-unused-dependencies.sh"

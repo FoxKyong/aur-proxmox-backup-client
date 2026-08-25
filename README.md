@@ -27,7 +27,10 @@ makepkg -si
 ```
 
 `makepkg -s` pulls in the build dependencies; `-i` installs the resulting
-package. The sources are fetched from `git.proxmox.com` at build time.
+package. The sources are fetched from `git.proxmox.com` at build time, over
+**HTTPS** — the `git://` protocol (TCP 9418) is blocked on many networks. To
+use it anyway, set `_gitproto=git` at the top of the `source` block in the
+`PKGBUILD`.
 
 ## How releases are pinned
 
