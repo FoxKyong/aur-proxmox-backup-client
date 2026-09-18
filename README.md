@@ -21,8 +21,8 @@ Only the client-side crates are built; the server is not.
 ## Building & installing
 
 ```bash
-git clone https://github.com/FoxKyong/proxmox-backup-client.git
-cd proxmox-backup-client
+git clone https://github.com/FoxKyong/aur-proxmox-backup-client.git
+cd aur-proxmox-backup-client
 makepkg -si
 ```
 
