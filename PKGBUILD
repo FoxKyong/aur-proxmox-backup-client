@@ -2,12 +2,12 @@
 # Maintainer: Thomas Lamprecht <thomas@lamprecht.org>
 # Contributor: Radim Vančo (FoxKyong) <radim.vanco@jifox.cz>
 pkgname=proxmox-backup-client
-pkgver=4.2.6
+pkgver=4.2.7
 pkgrel=1
 # NOTE: upstream only tags releases up to v4.2.0; 4.2.1 and later exist solely
-# as debian/changelog entries (and apt packages), so there is no v4.2.6 git tag.
-# Pin the proxmox-backup source by the "bump version to 4.2.6-1" commit instead.
-_pbs_commit=a51146896605e2f34d0bf6239c10004a96d08e9b
+# as debian/changelog entries (and apt packages), so there is no v4.2.7 git tag.
+# Pin the proxmox-backup source by the "bump version to 4.2.7-1" commit instead.
+_pbs_commit=4404a84aec2f25bf30651bfb72734a4f6fceacfb
 pkgdesc="Client for Proxmox Backup Server"
 arch=('x86_64' 'aarch64')
 url="https://pbs.proxmox.com"
@@ -26,7 +26,7 @@ options=(!lto)
 _gitproto=git+https
 source=(
     "$pkgname-$pkgver::${_gitproto}://git.proxmox.com/git/proxmox-backup.git#commit=$_pbs_commit"
-    "proxmox::${_gitproto}://git.proxmox.com/git/proxmox.git#commit=382db6bfbb1b499ed51102a2652d1f0620e1d704"
+    "proxmox::${_gitproto}://git.proxmox.com/git/proxmox.git#commit=9a7a5c8de7613904f3a4c292c07c7695f33e9323"
     "proxmox-fuse::${_gitproto}://git.proxmox.com/git/proxmox-fuse.git"
     "pxar::${_gitproto}://git.proxmox.com/git/pxar.git"
     "pathpatterns::${_gitproto}://git.proxmox.com/git/pathpatterns.git"
