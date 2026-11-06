@@ -5,11 +5,11 @@ Subject: [PATCH] re-route dependencies not available on crates.io to git repos
 
 Signed-off-by: Thomas Lamprecht <thomas@lamprecht.org>
 ---
- Cargo.toml | 146 ++++++++++++-------------------------------------------------
- 1 file changed, 27 insertions(+), 119 deletions(-)
+ Cargo.toml | 165 ++++++++++------------------------------------------
+ 1 file changed, 32 insertions(+), 133 deletions(-)
 
 diff --git a/Cargo.toml b/Cargo.toml
-index 4b1671ea..086de77a 100644
+index 0d822b9..94f7c73 100644
 --- a/Cargo.toml
 +++ b/Cargo.toml
 @@ -41,8 +41,6 @@ members = [
@@ -21,23 +21,7 @@ index 4b1671ea..086de77a 100644
  
      "pxar-bin",
  ]
-@@ -120,7 +114,6 @@ pbs-tools = { path = "pbs-tools" }
- # regular crates
- anyhow = "1.0"
- async-trait = "0.1.56"
--apt-pkg-native = "0.3.2"
- bitflags = "2.4"
- bytes = "1.0"
- cidr = "0.3"
-@@ -133,7 +126,6 @@ flate2 = "1.0"
- foreign-types = "0.3"
- futures = "0.3"
- h2 = { version = "0.4", features = [ "stream" ] }
--handlebars = "3.0"
- hex = "0.4.3"
- hickory-resolver = { version = "0.24.1", default-features = false, features = [ "system-config", "tokio-runtime" ] }
- http-body-util = "0.1"
-@@ -172,164 +172,64 @@ xdg = "2.2"
+@@ -169,163 +167,64 @@ xdg = "2.2"
  zstd = "0.13"
  zstd-safe = "7"
  
@@ -68,7 +52,6 @@ index 4b1671ea..086de77a 100644
 -rustyline.workspace = true
 -serde.workspace = true
 -serde_json.workspace = true
--syslog.workspace = true
 -termcolor.workspace = true
 -thiserror.workspace = true
 -tokio = { workspace = true, features = [ "fs", "io-util", "io-std", "macros", "net", "parking_lot", "process", "rt", "rt-multi-thread", "signal", "time" ] }
@@ -102,7 +85,7 @@ index 4b1671ea..086de77a 100644
 -proxmox-metrics.workspace = true
 -proxmox-network-api = { workspace = true, features = [ "impl" ] }
 -proxmox-network-types.workspace = true
--proxmox-notify = { workspace = true, features = [ "pbs-context" ] }
+-proxmox-notify = { workspace = true, features = [ "pbs-context", "legacy-matchers" ] }
 -proxmox-openid.workspace = true
 -proxmox-product-config.workspace = true
 -proxmox-parallel-handler.workspace = true
@@ -189,8 +172,8 @@ index 4b1671ea..086de77a 100644
  #proxmox-openid = { path = "../proxmox/proxmox-openid" }
  #proxmox-parallel-handler = { path = "../proxmox/proxmox-parallel-handler" }
 -#proxmox-product-config = { path = "../proxmox/proxmox-product-config" }
-+proxmox-product-config = { path = "../proxmox/proxmox-product-config" }
 -#proxmox-rate-limiter = { path = "../proxmox/proxmox-rate-limiter" }
++proxmox-product-config = { path = "../proxmox/proxmox-product-config" }
 +proxmox-rate-limiter = { path = "../proxmox/proxmox-rate-limiter" }
  #proxmox-rest-server = { path = "../proxmox/proxmox-rest-server" }
 -#proxmox-router = { path = "../proxmox/proxmox-router" }
@@ -198,9 +181,9 @@ index 4b1671ea..086de77a 100644
  #proxmox-rrd = { path = "../proxmox/proxmox-rrd" }
  #proxmox-rrd-api-types = { path = "../proxmox/proxmox-rrd-api-types" }
 -#proxmox-s3-client = { path = "../proxmox/proxmox-s3-client" }
-+proxmox-s3-client = { path = "../proxmox/proxmox-s3-client" }
 -#proxmox-schema = { path = "../proxmox/proxmox-schema" }
 -#proxmox-section-config = { path = "../proxmox/proxmox-section-config" }
++proxmox-s3-client = { path = "../proxmox/proxmox-s3-client" }
 +proxmox-schema = { path = "../proxmox/proxmox-schema" }
 +proxmox-section-config = { path = "../proxmox/proxmox-section-config" }
  #proxmox-sendmail = { path = "../proxmox/proxmox-sendmail" }
