@@ -34,9 +34,10 @@ use it anyway, set `_gitproto=git` at the top of the `source` block in the
 
 ## How releases are pinned
 
-Upstream only git-tags releases up to `v4.2.0`; later point releases
-(`4.2.1`, `4.2.2`, `4.2.3`, …) exist solely as `debian/changelog` entries and
-apt packages, with no matching git tag. Each bump therefore pins:
+Upstream git-tags only some releases (`v4.2.0`, `v4.2.8`); the other point
+releases (`4.2.1`–`4.2.7`, `4.2.9`, `4.2.10`, …) exist solely as
+`debian/changelog` entries and apt packages, with no matching git tag. Each
+bump therefore pins:
 
 - **`proxmox-backup`** by its `bump version to X-1` commit (`_pbs_commit`), and
 - **`proxmox`** by a `master` commit dated at/just-before that release, chosen
@@ -46,7 +47,8 @@ Two patches are applied in `prepare()`:
 
 - `0001-…` re-routes the proxmox workspace crates to the local `../proxmox`
   checkout and strips the server package so only the client builds. It may need
-  a refresh when a release adds a new dependency to the root `[dependencies]`.
+  a refresh when a release adds, removes or changes a dependency in the root
+  `[dependencies]` block or removes one from `[workspace.dependencies]`.
 - `0002-…` drops all but the client man pages.
 
 ## License
